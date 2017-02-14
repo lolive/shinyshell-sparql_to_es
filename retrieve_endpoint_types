@@ -1,0 +1,2 @@
+name_params ENDPOINT NAMEDGRAPH
+retrieve_triples_matching_predicate $ENDPOINT "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" rdftype $NAMEDGRAPH |aggregatedata |gzip

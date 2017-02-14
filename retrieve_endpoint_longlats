@@ -1,0 +1,2 @@
+name_params ENDPOINT NAMEDGRAPH
+retrieve_triples_matching_predicates $ENDPOINT "http://www.w3.org/2003/01/geo/wgs84_pos#long" "http://www.w3.org/2003/01/geo/wgs84_pos#lat" longlat $NAMEDGRAPH |aggregatedata |gzip
