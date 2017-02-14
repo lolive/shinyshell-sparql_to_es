@@ -1,0 +1,8 @@
+Monitor the endpoint metadata retrieval process.
+
+Monitor the endpoint metadata retrieval process.
+Use for example after a "retrieve_endpoint_metadata".
+
+Example:
+retrieve_endpoint_metadata $HOME/.tmp http://dbpedia.datao.net/sparql http://dbpedia.org/ &
+monitor_loads $HOME/.tmp

@@ -1,0 +1,6 @@
+name_params JSON_DIR ES_INDEX
+local ES_TYPE=entry
+for json in ${JSON_DIR}/*.json;do
+  curl -s -XPOST localhost:9200/$ES_INDEX/$ES_TYPE/_bulk --data-binary @${JSON_DIR}/$json
+done
+

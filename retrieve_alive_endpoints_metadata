@@ -1,0 +1,13 @@
+local METADATA_LOAD_DIR=$HOME/.tmp
+all_alive_endpoints|while read ENDPOINT; do
+ ( unset NAMEDGRAPH
+  local NO_NAMEGRAPH=1
+  for NAMEDGRAPH in `nglist`;do
+   local NO_NAMEGRAPH=0
+   retrieve_endpoint_metadata
+  done
+  if [ $NO_NAMEGRAPH = 1]; then
+   retrieve_endpoint_metadata
+  fi
+ ) 2>/dev/null &
+done
