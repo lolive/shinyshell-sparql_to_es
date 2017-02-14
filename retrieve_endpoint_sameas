@@ -1,2 +1,2 @@
-name_params ENDPOINT NAMEDGRAPH
-retrieve_triples_matching_predicate $ENDPOINT "http://www.w3.org/2002/07/owl#sameAs://www.w3.org/2002/07/owl#sameAs" owlsameas $NAMEDGRAPH |aggregatedata |gzip
+name_params ENDPOINT _NAMEDGRAPH
+retrieve_triples_matching_predicate "http://www.w3.org/2002/07/owl#sameAs://www.w3.org/2002/07/owl#sameAs" owlsameas

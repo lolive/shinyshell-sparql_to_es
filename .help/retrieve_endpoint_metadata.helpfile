@@ -1,0 +1,7 @@
+Stores in /tmp the metadata of an endpoint (resp endpoint/namedgraph): labels,
+sameas, types.
+
+Stores in /tmp the metadata of an endpoint (resp endpoint/namedgraph): labels,
+Note that results are aggregated (cf view_help aggregatedata for more info).
+Example:
+retrieve_endpoint_metadata http://dbpedia.datao.net/sparql http://dbpedia.org/ 

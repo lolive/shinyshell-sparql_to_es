@@ -1,0 +1,44 @@
+name_params ENDPOINT _NAMEDGRAPH
+
+local ENDPOINT_FILENAME=${ENDPOINT#*://}
+local ENDPOINT_FILENAME=${ENDPOINT_FILENAME/\#/__}
+local ENDPOINT_FILENAME=${ENDPOINT_FILENAME//\//_}
+
+local NAMEDGRAPH_FILENAME=${NAMEDGRAPH#*://}
+local NAMEDGRAPH_FILENAME=${NAMEDGRAPH_FILENAME/\#/__}
+local NAMEDGRAPH_FILENAME=${NAMEDGRAPH_FILENAME//\//_}
+
+local DATADIR=${ENDPOINT_FILENAME}/${NAMEDGRAPH_FILENAME}
+
+local METADATA_LOAD_DIR=$HOME/.tmp/
+mkdir -p ${METADATA_LOAD_DIR}/${DATADIR}
+
+local LABELS_FILENAME=${METADATA_LOAD_DIR}/${DATADIR}/'labels.'
+local SAMEAS_FILENAME=${METADATA_LOAD_DIR}/${DATADIR}/'sameas.'
+local TYPES_FILENAME=${METADATA_LOAD_DIR}/${DATADIR}/'types.'
+
+local SUFFIX=.json
+local LOG_SUFFIX=.log
+
+if [ -n ${NAMEDGRAPH_FILENAME} ]; then
+ local LOG_FILENAME=${METADATA_LOAD_DIR}/${ENDPOINT_FILENAME}${LOG_SUFFIX}
+else
+ local LOG_FILENAME=${METADATA_LOAD_DIR}/${ENDPOINT_FILENAME}____${NAMEDGRAPH_FILENAME}${LOG_SUFFIX}
+fi
+
+local LOG_MESSAGE="${DATADIR} : Retrieving labels"
+trap "echo Killed while retrieving labels > ${LOG_FILENAME};exit" TERM INT
+\rm -f ${LABELS_FILENAME}*${SUFFIX}
+retrieve_endpoint_labels 2> /dev/null 4> >( while read LOG; do echo ${LOG_MESSAGE}: ${LOG} >  ${LOG_FILENAME}; done) | aggregatedata | usv2esUpsert | split -a 6 --additional-suffix="${SUFFIX}" - ${LABELS_FILENAME} 
+
+local LOG_MESSAGE="${DATADIR} : Labels done. Retrieving sameas"
+trap "echo Killed while retrieving sameas > ${LOG_FILENAME};exit" TERM INT
+\rm -f ${SAMEAS_FILENAME}*${SUFFIX}
+retrieve_endpoint_sameas 2> /dev/null 4> >( while read LOG; do echo ${LOG_MESSAGE}: ${LOG} >  ${LOG_FILENAME}; done) | aggregatedata | usv2esUpsert | split -a 6 --additional-suffix="${SUFFIX}" - ${SAMEAS_FILENAME} 
+
+local LOG_MESSAGE="${DATADIR} : Labels & sameas done. Retrieving types"
+trap "echo Killed while retrieving types > ${LOG_FILENAME};exit" TERM INT
+\rm -f ${TYPES_FILENAME}*${SUFFIX}
+retrieve_endpoint_types 2> /dev/null 4> >( while read LOG; do echo ${LOG_MESSAGE}: ${LOG} >  ${LOG_FILENAME}; done) | aggregatedata | usv2esUpsert | split -a 6 --additional-suffix="${SUFFIX}" - ${TYPES_FILENAME} 
+
+echo "All done." > ${LOG_FILENAME}

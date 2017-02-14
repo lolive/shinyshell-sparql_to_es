@@ -1,0 +1,3 @@
+name_params METADATA_LOAD_DIR
+watch -n 5 grep -v "'All done'" ${METADATA_LOAD_DIR}/*.log
+

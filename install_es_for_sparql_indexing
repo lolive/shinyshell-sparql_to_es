@@ -1,0 +1,4 @@
+name_params ES_DIR
+install_es
+echo "The current script must be updated to copy its .data/scripts into the config/ dir of the newly installed Elasticsearch"
+

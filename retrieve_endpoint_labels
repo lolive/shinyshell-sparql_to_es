@@ -1,3 +1,2 @@
-name_params ENDPOINT
-local NAMEDGRAPH=${1}
-retrieve_triples_matching_predicate "http://www.w3.org/2000/01/rdf-schema#label" rdfslabel #|aggregatedata |gzip
+name_params ENDPOINT _NAMEDGRAPH
+retrieve_triples_matching_predicate "http://www.w3.org/2000/01/rdf-schema#label" rdfslabel

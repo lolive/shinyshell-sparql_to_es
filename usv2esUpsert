@@ -1,0 +1,1 @@
+grep -v '‾$' | grep -v '^‾'|grep --color=auto -v "^\"nodeID://" | sed 's/"/\\"/g' | sed 's#\([^‾]*\)‾\([^‾]*\)‾\([^‾]*\)‾\([^‾]*\)‾‾‾\([^‾]*\)#\{ "update" : { "_id" : "\3" } }\n{ "upsert": { "\4": ["\5"] , "endpoint": {"url": "\1", "namedgraph": "\2"}}, "script" : { script_file: "\4",  "params": \{ "dataToAppend": "\5" }, lang: "groovy" }  }#'

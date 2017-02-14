@@ -1,0 +1,4 @@
+Packs the objects for each given subject
+
+Packs the objects for each given subject.
+For example: :a :b :c; :a :b :d; becomes :a :b :c,:d.
