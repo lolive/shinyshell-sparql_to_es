@@ -41,4 +41,4 @@ trap "echo Killed while retrieving types > ${LOG_FILENAME};exit" TERM INT
 \rm -f ${TYPES_FILENAME}*${SUFFIX}
 retrieve_endpoint_types 2> /dev/null 4> >( while read LOG; do echo ${LOG_MESSAGE}: ${LOG} >  ${LOG_FILENAME}; done) | aggregatedata | usv2esUpsert | split -a 6 --additional-suffix="${SUFFIX}" - ${TYPES_FILENAME} 
 
-echo "All done." > ${LOG_FILENAME}
+rm ${LOG_FILENAME}
