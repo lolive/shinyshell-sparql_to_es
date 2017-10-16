@@ -1,3 +1,5 @@
+# Package "Shinyshell-sparql_to_es":
+
 
 $ aggregatedata  : "Packs the objects for each given subject. For example: :a :b :c; :a :b :d; becomes :a :b :c,:d."
 
@@ -21,6 +23,8 @@ $ retrieve_endpoint_types ENDPOINT _NAMEDGRAPH : ""
 
 $ usv2esUpsert  : ""
 
+
+This package contains the following functions:
 
 
 ## aggregatedata  :
