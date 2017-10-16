@@ -29,6 +29,8 @@ This package contains the following functions:
 
 ## aggregatedata  :
 
+Packs the objects for each given subject
+
 Packs the objects for each given subject.
 For example: :a :b :c; :a :b :d; becomes :a :b :c,:d.
 
@@ -42,6 +44,8 @@ For example: :a :b :c; :a :b :d; becomes :a :b :c,:d.
 
 
 ## monitor_loads METADATA_LOAD_DIR :
+
+Monitor the endpoint metadata retrieval process.
 
 Monitor the endpoint metadata retrieval process.
 Use for example after a "retrieve_endpoint_metadata".
@@ -65,6 +69,8 @@ monitor_loads $HOME/.tmp
 
 ## retrieve_endpoint_metadata METADATA_LOAD_DIR ENDPOINT _NAMEDGRAPH :
 
+Stores in the metadata of an endpoint (resp endpoint/namedgraph) in
+METADATA_LOAD_DIR: labels, sameas, types.
 
 Stores in $METADATA_LOAD_DIR the metadata of an endpoint (resp endpoint/namedgraph): labels,
 Note that results are aggregated (cf view_help aggregatedata for more info).
